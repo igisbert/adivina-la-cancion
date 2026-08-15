@@ -80,8 +80,15 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
   <script is:inline>
     document.addEventListener('astro:page-load', () => {
-      const songData = JSON.parse(document.querySelector('.game').dataset.song);
+      const gameEl = document.querySelector('.game');
+      if (!gameEl) return;
+      const songData = JSON.parse(gameEl.dataset.song);
     const audio = new Audio();
+
+    document.addEventListener('astro:before-preparation', () => {
+      audio.pause();
+      if (playTimeout) clearTimeout(playTimeout);
+    });
     const playButton = document.getElementById('play-button');
     const skipButton = document.getElementById('skip-button');
     const attemptsDisplay = document.getElementById('attempts-display');
