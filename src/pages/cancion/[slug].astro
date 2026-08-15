@@ -6,6 +6,7 @@ import AttemptsDisplay from '../../components/AttemptsDisplay.astro';
 import SearchInput from '../../components/SearchInput.astro';
 import Waveform from '../../components/Waveform.astro';
 import GameNav from '../../components/GameNav.astro';
+import VolumeControl from '../../components/VolumeControl.astro';
 import songs from '../../data/songs.json';
 
 export function getStaticPaths() {
@@ -74,6 +75,8 @@ const { song, currentIndex, nextSlug } = Astro.props;
         <SkipButton id="skip-button" />
       </div>
 
+      <VolumeControl />
+
       <GameNav nextSlug={nextSlug} />
     </div>
   </main>
@@ -111,6 +114,15 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
     audio.src = songData.previewUrl;
     audio.preload = 'auto';
+
+    const volumeSlider = document.getElementById('volume-slider');
+    const savedVolume = localStorage.getItem('musicgame_volume');
+    if (savedVolume !== null) volumeSlider.value = savedVolume;
+    audio.volume = parseFloat(volumeSlider.value);
+    volumeSlider.addEventListener('input', (e) => {
+      audio.volume = parseFloat(e.target.value);
+      localStorage.setItem('musicgame_volume', e.target.value);
+    });
 
     audio.addEventListener('ended', () => {
       updatePlayButton(false);
