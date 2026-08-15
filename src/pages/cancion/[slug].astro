@@ -187,7 +187,9 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
         guesses.push(song);
 
-        var isCorrect = song.trackId === songData.trackId;
+        var isCorrect = song.trackId === songData.trackId ||
+          (song.trackName.toLowerCase() === songData.trackName.toLowerCase() &&
+           song.artistName.toLowerCase() === songData.artistName.toLowerCase());
         var dots = attemptsDisplay.querySelectorAll('.attempt-dot');
 
         if (isCorrect) {
