@@ -12,7 +12,7 @@ const { trackId, slug, artworkUrl, trackName, artistName } = Astro.props;
 
 <a href={`/cancion/${slug}`} class="song-card" data-song-id={trackId}>
   <div class="song-art-wrap">
-    <img src={artworkUrl} alt="" class="song-art unplayed" loading="lazy" />
+    <img src={artworkUrl} alt="" class="song-art unplayed" loading="lazy" draggable="false" />
     <div class="song-overlay">
       <span class="song-overlay-title">{trackName}</span>
       <span class="song-overlay-artist">{artistName}</span>
@@ -44,6 +44,8 @@ const { trackId, slug, artworkUrl, trackName, artistName } = Astro.props;
     height: 100%;
     object-fit: cover;
     transition: filter 0.3s ease-out;
+    -webkit-user-drag: none;
+    user-select: none;
   }
 
   .song-art.unplayed {
