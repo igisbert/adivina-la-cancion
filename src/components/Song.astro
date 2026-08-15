@@ -12,7 +12,13 @@ const { trackId, slug, artworkUrl, trackName, artistName } = Astro.props;
 
 <a href={`/cancion/${slug}`} class="song-card" data-song-id={trackId}>
   <div class="song-art-wrap">
-    <img src={artworkUrl} alt="" class="song-art unplayed" loading="lazy" draggable="false" />
+    <img src={artworkUrl} alt="" class="song-art unplayed" loading="lazy" draggable="false" transition:name={`song-art-${slug}`} />
+    <div class="song-lock">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0110 0v4"></path>
+      </svg>
+    </div>
     <div class="song-overlay">
       <span class="song-overlay-title">{trackName}</span>
       <span class="song-overlay-artist">{artistName}</span>
@@ -49,12 +55,25 @@ const { trackId, slug, artworkUrl, trackName, artistName } = Astro.props;
   }
 
   .song-art.unplayed {
-    filter: grayscale(100%) blur(16px) saturate(0.4);
-    transform: scale(1.15);
+    opacity: 0;
   }
 </style>
 
 <style is:global>
+  .song-lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+  }
+
+  .song-art:not(.unplayed) ~ .song-lock {
+    display: none;
+  }
+
   .song-overlay {
     position: absolute;
     bottom: 0;

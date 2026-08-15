@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/jost';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -17,14 +18,75 @@ const { title = 'Adivina la Canción' } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <slot />
   </body>
 </html>
 
+<script is:inline>
+  if (!window.__vtSync) {
+    window.__vtSync = true;
+
+    document.addEventListener('astro:before-swap', (event) => {
+      const newDoc = event.newDocument;
+      let progress;
+      try {
+        progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+      } catch { progress = {}; }
+
+      newDoc.querySelectorAll('[data-song-id]').forEach((el) => {
+        const id = el.dataset.songId;
+        if (progress[id]) {
+          const img = el.querySelector('.song-art');
+          if (img) img.classList.remove('unplayed');
+          const artWrap = el.querySelector('.song-art-wrap');
+          if (artWrap && !artWrap.querySelector('.song-badge')) {
+            const badge = document.createElement('div');
+            badge.className = 'song-badge';
+            if (progress[id].solved) {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
+            } else {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            }
+            artWrap.appendChild(badge);
+          }
+        }
+      });
+
+      const gameMain = newDoc.querySelector('.game');
+      if (gameMain && gameMain.dataset.song) {
+        try {
+          const songData = JSON.parse(gameMain.dataset.song);
+          if (progress[songData.trackId]) {
+            const artwork = newDoc.getElementById('artwork');
+            if (artwork) {
+              artwork.style.opacity = '1';
+            }
+            const lock = newDoc.getElementById('artwork-lock');
+            if (lock) lock.classList.add('hidden');
+            const titleText = newDoc.getElementById('title-text');
+            const artistText = newDoc.getElementById('artist-text');
+            const titleReveal = newDoc.getElementById('title-reveal');
+            if (titleText) titleText.textContent = songData.trackName;
+            if (artistText) artistText.textContent = songData.artistName;
+            if (titleReveal) titleReveal.classList.add('visible');
+          }
+        } catch {}
+      }
+    });
+  }
+</script>
+
 <style is:global>
   @import '@fontsource-variable/jost';
+
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    border-radius: 16px;
+    overflow: hidden;
+  }
 
   html,
   body {

@@ -6,17 +6,6 @@ import { Music } from '@lucide/astro';
 ---
 
 <Layout title="Adivina la Canción">
-  <script is:inline>
-    (function() {
-      try {
-        const data = localStorage.getItem('musicgame_progress');
-        window.__progress = data ? JSON.parse(data) : {};
-      } catch (e) {
-        window.__progress = {};
-      }
-    })();
-  </script>
-
   <main class="main">
     <header class="header">
       <div class="logo">
@@ -35,7 +24,11 @@ import { Music } from '@lucide/astro';
 
   <script is:inline>
     (function() {
-      const progress = window.__progress || {};
+      const progress = (() => {
+        try {
+          return JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+        } catch { return {}; }
+      })();
       const cards = document.querySelectorAll('.song-card');
       
       cards.forEach(card => {
@@ -49,17 +42,18 @@ import { Music } from '@lucide/astro';
           }
           
           const artWrap = card.querySelector('.song-art-wrap');
-          
-          const badge = document.createElement('div');
-          badge.className = 'song-badge';
-          
-          if (songProgress.solved) {
-            badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
-          } else {
-            badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+          if (artWrap && !artWrap.querySelector('.song-badge')) {
+            const badge = document.createElement('div');
+            badge.className = 'song-badge';
+            
+            if (songProgress.solved) {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
+            } else {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            }
+            
+            artWrap.appendChild(badge);
           }
-          
-          artWrap.appendChild(badge);
         }
       });
     })();
