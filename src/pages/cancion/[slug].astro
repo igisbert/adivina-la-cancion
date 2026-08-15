@@ -135,18 +135,25 @@ const { song, currentIndex, nextSlug } = Astro.props;
           clearTimeout(playTimeout);
         }
 
-        audio.currentTime = 0;
+        var isPaused = audio.paused && audio.currentTime > 0;
+
+        if (!isPaused) {
+          audio.currentTime = 0;
+        }
 
         audio.play().then(function() {
           var gameOver = solved || currentAttempt >= INTERVALS.length;
 
           if (!gameOver) {
             var duration = INTERVALS[currentAttempt];
+            var remaining = isPaused ? (duration - audio.currentTime) : duration;
+            if (remaining <= 0) remaining = duration;
+
             playTimeout = setTimeout(function() {
               audio.pause();
               updatePlayButton(false);
               waveform.classList.remove('playing');
-            }, duration * 1000);
+            }, remaining * 1000);
           }
 
           updatePlayButton(true);
@@ -333,7 +340,18 @@ const { song, currentIndex, nextSlug } = Astro.props;
         guessDropdown.innerHTML = '';
       }
 
-      playButton.addEventListener('click', playSegment);
+      playButton.addEventListener('click', function() {
+        if (!audio.paused && audio.currentTime > 0) {
+          audio.pause();
+          updatePlayButton(false);
+          waveform.classList.remove('playing');
+          if (playTimeout) {
+            clearTimeout(playTimeout);
+          }
+        } else {
+          playSegment();
+        }
+      });
       skipButton.addEventListener('click', handleSkip);
 
       guessInput.addEventListener('input', function(e) {
