@@ -1,0 +1,115 @@
+---
+interface Props {
+  placeholder?: string;
+  id?: string;
+}
+
+const { placeholder = "Escribe tu respuesta...", id = "guess-input" } = Astro.props;
+---
+
+<div class="search-wrap">
+  <input
+    type="text"
+    id={id}
+    class="search-input"
+    placeholder={placeholder}
+    autocomplete="off"
+    spellcheck="false"
+  />
+  <div id="search-dropdown" class="search-dropdown"></div>
+</div>
+
+<style>
+  .search-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    font-size: 15px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    color: #fafafa;
+    transition: border-color 0.2s ease-out;
+  }
+
+  .search-input::placeholder {
+    color: #52525b;
+  }
+
+  .search-input:focus {
+    border-color: #52525b;
+    outline: none;
+  }
+</style>
+
+<style is:global>
+  #search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    max-height: 320px;
+    overflow-y: auto;
+    z-index: 50;
+    display: none;
+    padding: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  #search-dropdown.active {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .search-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.1s ease-out;
+  }
+
+  .search-item:hover {
+    background: #27272a;
+  }
+
+  .search-item:hover .search-item-title {
+    text-decoration: underline;
+    text-decoration-color: #52525b;
+    text-underline-offset: 3px;
+  }
+
+  .search-item-info {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: #a1a1aa;
+  }
+
+  .search-item-title {
+    font-weight: 600;
+    color: #fafafa;
+  }
+
+  .search-item-sep {
+    color: #52525b;
+    margin: 0 4px;
+  }
+
+  .search-item-artist {
+    color: #71717a;
+  }
+</style>

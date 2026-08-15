@@ -1,0 +1,35 @@
+---
+import Song from './Song.astro';
+import songs from '../data/songs.json';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const displaySongs = limit ? songs.slice(0, limit) : songs;
+---
+
+<div class="songs-grid">
+  {displaySongs.map(song => (
+    <Song
+      trackId={song.trackId}
+      slug={song.slug}
+      artworkUrl={song.artworkUrl100}
+      trackName={song.trackName}
+      artistName={song.artistName}
+    />
+  ))}
+</div>
+
+<style>
+  .songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 0 24px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+</style>

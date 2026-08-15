@@ -1,0 +1,31 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = "play-button" } = Astro.props;
+---
+
+<button id={id} class="play-button" aria-label="Reproducir">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+  </svg>
+</button>
+
+<style>
+  .play-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fafafa;
+    color: #09090b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.15s ease-out;
+
+  .play-button:active {
+    transform: scale(0.95);
+  }
+</style>

@@ -1,0 +1,466 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PlayButton from '../../components/PlayButton.astro';
+import SkipButton from '../../components/SkipButton.astro';
+import AttemptsDisplay from '../../components/AttemptsDisplay.astro';
+import SearchInput from '../../components/SearchInput.astro';
+import Waveform from '../../components/Waveform.astro';
+import GameNav from '../../components/GameNav.astro';
+import songs from '../../data/songs.json';
+
+export function getStaticPaths() {
+  return songs.map((song, index) => ({
+    params: { slug: song.slug },
+    props: {
+      song,
+      currentIndex: index,
+      nextSlug: index < songs.length - 1 ? songs[index + 1].slug : null,
+    },
+  }));
+}
+
+const { song, currentIndex, nextSlug } = Astro.props;
+---
+
+<Layout title="Adivina la Canción">
+  <script type="module">
+    import confetti from 'canvas-confetti';
+    window.fireConfetti = confetti;
+  </script>
+  <main class="game">
+    <nav class="game-nav">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"></path>
+        </svg>
+        Todas las canciones
+      </a>
+    </nav>
+
+    <div class="game-center">
+      <div class="artwork-wrap">
+        <img
+          src={song.artworkUrl100}
+          alt=""
+          id="artwork"
+          class="artwork"
+        />
+        <div id="title-reveal" class="title-reveal">
+          <span id="title-text"></span>
+          <span class="title-sep"> de </span>
+          <span id="artist-text"></span>
+        </div>
+      </div>
+
+      <Waveform id="waveform" />
+
+      <div class="input-area">
+        <SearchInput id="guess-input" placeholder="Adivina la canción..." />
+      </div>
+
+      <AttemptsDisplay id="attempts-display" />
+
+      <div class="button-row">
+        <PlayButton id="play-button" />
+        <SkipButton id="skip-button" />
+      </div>
+
+      <GameNav nextSlug={nextSlug} />
+    </div>
+  </main>
+
+  <script define:vars={{ songData: song }}>
+    (function() {
+      const audio = new Audio();
+      const playButton = document.getElementById('play-button');
+      const skipButton = document.getElementById('skip-button');
+      const attemptsDisplay = document.getElementById('attempts-display');
+      const guessInput = document.getElementById('guess-input');
+      const guessDropdown = document.getElementById('search-dropdown');
+      const artwork = document.getElementById('artwork');
+      const waveform = document.getElementById('waveform');
+      const titleReveal = document.getElementById('title-reveal');
+      const titleText = document.getElementById('title-text');
+      const artistText = document.getElementById('artist-text');
+      const gameNav = document.getElementById('game-nav');
+
+      const INTERVALS = [1, 2, 4, 7, 11, 16];
+      let currentAttempt = 0;
+      let solved = false;
+      let guesses = [];
+      let playTimeout = null;
+      let currentRequestId = 0;
+      let debounceTimer = null;
+
+      audio.src = songData.previewUrl;
+      audio.preload = 'auto';
+
+      audio.addEventListener('ended', function() {
+        updatePlayButton(false);
+        waveform.classList.remove('playing');
+      });
+
+      var existingProgress = null;
+      try {
+        var allProgress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+        existingProgress = allProgress[songData.trackId] || null;
+      } catch (e) {}
+
+      if (existingProgress) {
+        solved = existingProgress.solved;
+        guesses = existingProgress.guesses || [];
+        currentAttempt = guesses.length;
+
+        artwork.style.filter = 'none';
+        titleText.textContent = songData.trackName;
+        artistText.textContent = songData.artistName;
+        titleReveal.classList.add('visible');
+
+        guessInput.disabled = true;
+        guessInput.placeholder = solved ? '¡Adivinada!' : 'Fin del juego';
+        skipButton.disabled = true;
+
+        var dots = attemptsDisplay.querySelectorAll('.attempt-dot');
+        guesses.forEach(function(g, i) {
+          if (dots[i]) {
+            dots[i].classList.add(solved && i === guesses.length - 1 ? 'correct' : 'wrong');
+          }
+        });
+
+        gameNav.style.display = 'flex';
+      }
+
+      function playSegment() {
+        if (playTimeout) {
+          clearTimeout(playTimeout);
+        }
+
+        audio.currentTime = 0;
+
+        audio.play().then(function() {
+          var gameOver = solved || currentAttempt >= INTERVALS.length;
+
+          if (!gameOver) {
+            var duration = INTERVALS[currentAttempt];
+            playTimeout = setTimeout(function() {
+              audio.pause();
+              updatePlayButton(false);
+              waveform.classList.remove('playing');
+            }, duration * 1000);
+          }
+
+          updatePlayButton(true);
+          waveform.classList.add('playing');
+        }).catch(function(err) {
+          console.error('Playback failed:', err);
+        });
+      }
+
+      function updatePlayButton(playing) {
+        if (playing) {
+          playButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+        } else {
+          playButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>';
+        }
+      }
+
+      function revealSong() {
+        artwork.style.filter = 'none';
+
+        titleText.textContent = songData.trackName;
+        artistText.textContent = songData.artistName;
+        titleReveal.classList.add('visible');
+
+        guessInput.disabled = true;
+        guessInput.placeholder = 'Fin del juego';
+
+        if (playTimeout) {
+          clearTimeout(playTimeout);
+        }
+        audio.pause();
+        waveform.classList.remove('playing');
+        updatePlayButton(false);
+      }
+
+      function handleGuess(song) {
+        if (solved || currentAttempt >= INTERVALS.length) return;
+
+        guesses.push(song);
+
+        var isCorrect = song.trackId === songData.trackId;
+        var dots = attemptsDisplay.querySelectorAll('.attempt-dot');
+
+        if (isCorrect) {
+          solved = true;
+          if (dots[currentAttempt]) {
+            dots[currentAttempt].classList.add('correct');
+          }
+          revealSong();
+          window.fireConfetti({ particleCount: 150, spread: 80, origin: { y: 0.2 } });
+          gameNav.style.display = 'flex';
+        } else {
+          if (dots[currentAttempt]) {
+            dots[currentAttempt].classList.add('wrong');
+          }
+          currentAttempt++;
+
+          if (currentAttempt >= INTERVALS.length) {
+            revealSong();
+            gameNav.style.display = 'flex';
+          }
+        }
+
+        try {
+          var progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+          progress[songData.trackId] = {
+            guesses: guesses.map(function(g) { return { id: g.trackId, name: g.trackName, artist: g.artistName }; }),
+            solved: solved,
+            attempts: guesses.length,
+            timestamp: Date.now()
+          };
+          localStorage.setItem('musicgame_progress', JSON.stringify(progress));
+
+          var stats = JSON.parse(localStorage.getItem('musicgame_stats') || '{"played":0,"wins":0,"streak":0,"maxStreak":0,"distribution":{}}');
+          stats.played += 1;
+          if (solved) {
+            stats.wins += 1;
+            stats.streak += 1;
+            stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
+            stats.distribution[guesses.length] = (stats.distribution[guesses.length] || 0) + 1;
+          } else {
+            stats.streak = 0;
+          }
+          localStorage.setItem('musicgame_stats', JSON.stringify(stats));
+        } catch (e) {
+          console.error('Storage error:', e);
+        }
+      }
+
+      function handleSkip() {
+        if (solved || currentAttempt >= INTERVALS.length) return;
+
+        var dots = attemptsDisplay.querySelectorAll('.attempt-dot');
+        if (dots[currentAttempt]) {
+          dots[currentAttempt].classList.add('wrong');
+        }
+        guesses.push({ trackId: 0, trackName: 'Skip', artistName: '' });
+        currentAttempt++;
+
+        if (playTimeout) {
+          clearTimeout(playTimeout);
+        }
+        audio.pause();
+        waveform.classList.remove('playing');
+        updatePlayButton(false);
+
+        if (currentAttempt >= INTERVALS.length) {
+          revealSong();
+          gameNav.style.display = 'flex';
+        }
+
+        try {
+          var progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+          progress[songData.trackId] = {
+            guesses: guesses.map(function(g) { return { id: g.trackId, name: g.trackName, artist: g.artistName }; }),
+            solved: false,
+            attempts: guesses.length,
+            timestamp: Date.now()
+          };
+          localStorage.setItem('musicgame_progress', JSON.stringify(progress));
+
+          var stats = JSON.parse(localStorage.getItem('musicgame_stats') || '{"played":0,"wins":0,"streak":0,"maxStreak":0,"distribution":{}}');
+          stats.played += 1;
+          stats.streak = 0;
+          localStorage.setItem('musicgame_stats', JSON.stringify(stats));
+        } catch (e) {
+          console.error('Storage error:', e);
+        }
+      }
+
+      function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      async function searchSongs(query) {
+        var requestId = ++currentRequestId;
+
+        try {
+          var response = await fetch(
+            'https://itunes.apple.com/search?term=' + encodeURIComponent(query) + '&entity=song&limit=8'
+          );
+
+          if (requestId !== currentRequestId) return;
+
+          var data = await response.json();
+
+          if (data.results && data.results.length > 0) {
+            showDropdown(data.results);
+          } else {
+            hideDropdown();
+          }
+        } catch (error) {
+          console.error('Search error:', error);
+          hideDropdown();
+        }
+      }
+
+      function showDropdown(results) {
+        guessDropdown.innerHTML = '';
+
+        results.forEach(function(song) {
+          var item = document.createElement('div');
+          item.className = 'search-item';
+          item.innerHTML = '<div class="search-item-info"><span class="search-item-title">' + escapeHtml(song.trackName) + '</span><span class="search-item-sep"> - </span><span class="search-item-artist">' + escapeHtml(song.artistName) + '</span></div>';
+
+          item.addEventListener('click', function() {
+            handleGuess(song);
+            hideDropdown();
+            guessInput.value = '';
+          });
+
+          guessDropdown.appendChild(item);
+        });
+
+        guessDropdown.classList.add('active');
+      }
+
+      function hideDropdown() {
+        guessDropdown.classList.remove('active');
+        guessDropdown.innerHTML = '';
+      }
+
+      playButton.addEventListener('click', playSegment);
+      skipButton.addEventListener('click', handleSkip);
+
+      guessInput.addEventListener('input', function(e) {
+        var query = e.target.value.trim();
+
+        if (debounceTimer) {
+          clearTimeout(debounceTimer);
+        }
+
+        if (query.length < 2) {
+          hideDropdown();
+          return;
+        }
+
+        debounceTimer = setTimeout(function() {
+          searchSongs(query);
+        }, 400);
+      });
+
+      guessInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          hideDropdown();
+          guessInput.blur();
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!guessInput.contains(e.target) && !guessDropdown.contains(e.target)) {
+          hideDropdown();
+        }
+      });
+    })();
+  </script>
+</Layout>
+
+<style>
+  .game {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-nav {
+    padding: 16px 24px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #71717a;
+    text-decoration: none;
+  }
+
+  .game-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px 48px;
+    gap: 32px;
+  }
+
+  .artwork-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .artwork {
+    width: 280px;
+    height: 280px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    filter: grayscale(100%) blur(20px);
+    transition: filter 0.6s ease-out;
+  }
+
+  @media (min-width: 768px) {
+    .artwork {
+      width: 320px;
+      height: 320px;
+    }
+  }
+
+  .title-reveal {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    pointer-events: none;
+  }
+
+  .title-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .title-reveal #title-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fafafa;
+  }
+
+  .title-sep {
+    font-size: 16px;
+    color: #71717a;
+    margin: 0 6px;
+  }
+
+  .title-reveal #artist-text {
+    font-size: 16px;
+    color: #a1a1aa;
+  }
+
+  .input-area {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .button-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+</style>

@@ -1,11 +1,126 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import SongsGrid from '../components/SongsGrid.astro';
+import songs from '../data/songs.json';
+import { Music } from '@lucide/astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Adivina la Canción">
+  <script is:inline>
+    (function() {
+      try {
+        const data = localStorage.getItem('musicgame_progress');
+        window.__progress = data ? JSON.parse(data) : {};
+      } catch (e) {
+        window.__progress = {};
+      }
+    })();
+  </script>
+
+  <main class="main">
+    <header class="header">
+      <div class="logo">
+        <Music size={18} strokeWidth={1.5} />
+      </div>
+      <h1 class="title">Adivina la Canción</h1>
+      <p class="subtitle">{songs.length} canciones por descubrir</p>
+    </header>
+
+    <SongsGrid />
+
+    <footer class="footer">
+      <p>El progreso se guarda solo en este navegador.</p>
+    </footer>
+  </main>
+
+  <script is:inline>
+    (function() {
+      const progress = window.__progress || {};
+      const cards = document.querySelectorAll('.song-card');
+      
+      cards.forEach(card => {
+        const songId = card.dataset.songId;
+        const songProgress = progress[songId];
+        
+        if (songProgress) {
+          const img = card.querySelector('.song-art');
+          if (img) {
+            img.classList.remove('unplayed');
+          }
+          
+          const info = card.querySelector('.song-info');
+          if (info) {
+            info.classList.add('revealed');
+          }
+          
+          const badge = document.createElement('div');
+          badge.className = 'song-badge';
+          
+          if (songProgress.solved) {
+            const attempts = songProgress.guesses?.length || 6;
+            if (attempts === 1) {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
+            } else if (attempts <= 3) {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>';
+            } else {
+              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+            }
+          } else {
+            badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+          }
+          
+          card.appendChild(badge);
+        }
+      });
+    })();
+  </script>
 </Layout>
+
+<style>
+  .main {
+    min-height: 100dvh;
+  }
+
+  .header {
+    text-align: center;
+    padding: 48px 24px 32px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 10px;
+    color: #a1a1aa;
+    margin: 0 auto 12px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fafafa;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #71717a;
+    margin: 0;
+  }
+
+  .footer {
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 12px;
+    color: #52525b;
+    margin: 0;
+  }
+</style>

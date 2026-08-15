@@ -1,0 +1,42 @@
+---
+interface Props {
+  id?: string;
+  max?: number;
+}
+
+const { id = "attempts-display", max = 6 } = Astro.props;
+---
+
+<div id={id} class="attempts-display">
+  {Array.from({ length: max }, (_, i) => (
+    <div class="attempt-dot" data-index={i}></div>
+  ))}
+</div>
+
+<style>
+  .attempts-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .attempt-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #3f3f46;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+  }
+
+  .attempt-dot.wrong {
+    background: #ef4444;
+    border-color: #ef4444;
+  }
+
+  .attempt-dot.correct {
+    background: #22c55e;
+    border-color: #22c55e;
+  }
+</style>
