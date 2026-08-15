@@ -80,12 +80,20 @@
     "slug": "10"
   },
   {
+    "trackId": 65133395,
+    "trackName": "Deltoya",
+    "artistName": "Extremoduro",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m05/d21/h11/s06.yigjygwk.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c9/bc/ea/c9bcea24-a37d-92aa-1ad1-c8cfa23594f9/mzaf_9960146283905998636.plus.aac.p.m4a",
+    "slug": "11"
+  },
+  {
     "trackId": 252496249,
     "trackName": "Peces de Ciudad",
     "artistName": "Joaquín Sabina",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/f8/b8/50/f8b850df-b8c7-d6f1-eaf7-b0b0cf5a4bc3/dj.blmupzvu.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/26/97/6a/26976abc-bb40-5661-ae22-b998d00efdd7/mzaf_2425486593967705289.plus.aac.p.m4a",
-    "slug": "11"
+    "slug": "12"
   },
   {
     "trackId": 1548535190,
@@ -93,7 +101,7 @@
     "artistName": "C. Tangana",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/8c/02/638c027b-3487-1cc6-8028-2be8546ae151/886448978985.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/48/07/b1/4807b1cf-b666-af4f-cde2-d14ceac58c44/mzaf_5263350513850309867.plus.aac.p.m4a",
-    "slug": "12"
+    "slug": "13"
   },
   {
     "trackId": 478636035,
@@ -101,7 +109,7 @@
     "artistName": "Camilo Sesto",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/0a/b3/49/mzi.poszyzgt.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/42/06/a6/4206a666-2e37-5c4d-7dd4-0401e581d2fb/mzaf_16581514967384722602.plus.aac.p.m4a",
-    "slug": "13"
+    "slug": "14"
   },
   {
     "trackId": 110722294,
@@ -109,7 +117,7 @@
     "artistName": "Los Nikis",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/c1/58/11/c1581164-f302-327a-a8a6-5a0b400df3d6/dj.frxfaejs.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/de/bc/73/debc73f3-defb-51b0-6614-dfb3ca7cf39e/mzaf_9806858910127092401.plus.aac.p.m4a",
-    "slug": "14"
+    "slug": "15"
   },
   {
     "trackId": 380907765,
@@ -117,7 +125,7 @@
     "artistName": "a-ha",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/c6/e1/c8/mzi.ixgzfcmc.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/03/4f/f2034f41-707f-7111-bc63-e5d3cf7f2240/mzaf_17215043934336702540.plus.aac.p.m4a",
-    "slug": "15"
+    "slug": "16"
   },
   {
     "trackId": 185717604,
@@ -125,7 +133,7 @@
     "artistName": "Toto",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/69/ce/d2/69ced240-07a7-2a04-bbab-2afbacf30809/074643772822.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/12/e5/ba/12e5ba45-05c1-7060-25a8-c9b718e7f6e8/mzaf_4488601364870711408.plus.aac.p.m4a",
-    "slug": "16"
+    "slug": "17"
   },
   {
     "trackId": 1828830887,
@@ -133,7 +141,7 @@
     "artistName": "The Cranberries",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a3/77/a3/a377a309-8e52-f787-2250-2b34d320bf7b/25UMGIM64146.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/35/bb/65/35bb6532-1abe-59e4-9ced-8bee2742ea24/mzaf_15102830936602294569.plus.aac.p.m4a",
-    "slug": "17"
+    "slug": "18"
   },
   {
     "trackId": 1440881518,
@@ -141,7 +149,7 @@
     "artistName": "The Offspring",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/74/79/7b/74797b37-ea15-e667-1e75-8f59053e41f3/00602557270945.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/68/e0/6f/68e06f9e-1718-0d80-3150-df4655f88837/mzaf_1514219841909104015.plus.aac.p.m4a",
-    "slug": "18"
+    "slug": "19"
   },
   {
     "trackId": 171261242,
@@ -149,7 +157,7 @@
     "artistName": "Julio Iglesias",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Features/8b/9d/cd/dj.aekbpfsv.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c7/f6/22/c7f62266-ce8f-9811-31fa-82947818b597/mzaf_16506456934974694279.plus.aac.p.m4a",
-    "slug": "19"
+    "slug": "20"
   },
   {
     "trackId": 699851704,
@@ -157,7 +165,7 @@
     "artistName": "Amaral",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/74/da/af74da04-c0fd-053f-378b-d5c83e541c6e/724387371057.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/11/a0/21/11a02194-eb96-75d0-d4c6-d40c7c557b1b/mzaf_4513849755623749927.plus.aac.p.m4a",
-    "slug": "20"
+    "slug": "21"
   },
   {
     "trackId": 693490637,
@@ -165,7 +173,7 @@
     "artistName": "Raphael",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d7/a6/18/d7a618ed-19f2-eaf9-e23e-6fb97979d446/724359033457.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6b/95/84/6b958485-4ffd-312c-51b9-cfd1cac3f2fb/mzaf_14031799424737685482.plus.aac.p.m4a",
-    "slug": "21"
+    "slug": "22"
   },
   {
     "trackId": 79352057,
@@ -173,7 +181,7 @@
     "artistName": "Siniestro Total",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m08/d24/h14/mzi.thaalxkt.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4d/06/13/4d061380-dd62-cc7c-f7d6-f7fa3d2f1267/mzaf_16749016235642233922.plus.aac.p.m4a",
-    "slug": "22"
+    "slug": "23"
   },
   {
     "trackId": 1442547830,
@@ -181,7 +189,7 @@
     "artistName": "Nena Daconte",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/3b/7e/b4/3b7eb4dd-1b4e-f52d-ec44-4ec89adc2971/00602517200647.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b9/d7/37/b9d73705-5890-159e-02e7-fa23b3191437/mzaf_3666790260897600874.plus.aac.p.m4a",
-    "slug": "23"
+    "slug": "24"
   },
   {
     "trackId": 1443263751,
@@ -189,7 +197,7 @@
     "artistName": "Barricada",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c0/67/d2/c067d20d-4345-ea24-6759-ab904d9e6892/00731451029929.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f3/7e/30/f37e308e-9569-e644-a517-5ffd3337c71f/mzaf_2654852626135592880.plus.aac.p.m4a",
-    "slug": "24"
+    "slug": "25"
   },
   {
     "trackId": 403720917,
@@ -197,7 +205,7 @@
     "artistName": "Extremoduro",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/08/21/8f/08218fc5-49a1-6fd3-5260-ad9a60137966/dj.wzynrreg.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e7/42/3c/e7423c5e-70ed-33e5-2e29-2a89916359e7/mzaf_8799837011090799388.plus.aac.p.m4a",
-    "slug": "25"
+    "slug": "26"
   },
   {
     "trackId": 1393007704,
@@ -205,7 +213,7 @@
     "artistName": "La Polla Records",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/67/be/3d67be93-9814-46cc-0f8c-fedd8e2455a2/192562647844.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/19/4d/83/194d8313-abf4-bf78-6fc1-cec7d9c0b3c5/mzaf_22036337151975496.plus.aac.p.m4a",
-    "slug": "26"
+    "slug": "27"
   },
   {
     "trackId": 101043810,
@@ -213,7 +221,7 @@
     "artistName": "Eskorbuto",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/f6/10/c7/mzi.cvcyyykw.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/aa/6f/9b/aa6f9be7-838b-ee6a-adb9-a71f379a8668/mzaf_12656212186086162465.plus.aac.p.m4a",
-    "slug": "27"
+    "slug": "28"
   },
   {
     "trackId": 1238815835,
@@ -221,7 +229,7 @@
     "artistName": "Dover",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/70/18/ad/7018ade5-6dc9-0bf8-1573-7d7de862ec76/8429006985555.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/29/4f/ee/294feedd-229c-a3f6-55ed-c9cdc0dad81f/mzaf_17204545873599437321.plus.aac.p.m4a",
-    "slug": "28"
+    "slug": "29"
   },
   {
     "trackId": 339614692,
@@ -229,7 +237,7 @@
     "artistName": "Loquillo",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/16/2c/41162c6e-17d7-3de9-adae-2e5ea1f72a61/mzi.yapimkql.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/7b/9e/9a/7b9e9aef-38d3-6b3b-7dca-d043fa7281fb/mzaf_11401665999102505129.plus.aac.p.m4a",
-    "slug": "29"
+    "slug": "30"
   },
   {
     "trackId": 660022108,
@@ -237,7 +245,7 @@
     "artistName": "Reincidentes",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/87/f8/58/87f858d8-b744-01e1-66bb-e5ca3696e0a1/888002588005.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d1/b0/27/d1b0272c-2a1d-824b-378f-a3c97f891319/mzaf_1137173296240589663.plus.aac.p.m4a",
-    "slug": "30"
+    "slug": "31"
   },
   {
     "trackId": 42019113,
@@ -245,7 +253,7 @@
     "artistName": "Marea",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m01/d26/h17/s06.oqvmrzwj.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/3e/2b/3b/3e2b3b26-d430-2021-989e-f08ccc2042f7/mzaf_11368620272343816090.plus.aac.p.m4a",
-    "slug": "31"
+    "slug": "32"
   },
   {
     "trackId": 1468207722,
@@ -253,7 +261,7 @@
     "artistName": "Los Suaves",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/bd/47/89/bd4789e6-9532-fe0d-354a-97e412bd6c06/190295405724.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/31/5c/54/315c54fe-043b-9576-3702-e91e708030df/mzaf_4255775426160412446.plus.aac.p.m4a",
-    "slug": "32"
+    "slug": "33"
   },
   {
     "trackId": 1490003904,
@@ -261,7 +269,7 @@
     "artistName": "Robe",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/27/e0/be/27e0beaf-f78f-28ea-1fc4-e55e8bee9dbf/190295301934.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/16/e9/a3/16e9a376-b4b3-7974-1295-2a16da4f7e9a/mzaf_5181345365487822140.plus.aac.p.m4a",
-    "slug": "33"
+    "slug": "34"
   },
   {
     "trackId": 1450855670,
@@ -269,7 +277,7 @@
     "artistName": "Camela",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a8/35/34/a83534d5-be3c-dc4b-cc44-9feb2695c78e/190295474867.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f3/70/3c/f3703c09-81d9-0c6a-80e7-2bc0c1828a8a/mzaf_10125956944040709277.plus.aac.p.m4a",
-    "slug": "34"
+    "slug": "35"
   },
   {
     "trackId": 1065973980,
@@ -277,7 +285,7 @@
     "artistName": "Pink Floyd",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/aa/e0/ab/aae0ab6a-d906-a189-81bf-70b56aa43f7a/886445635843.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1e/dd/9e/1edd9e7e-e944-8b94-36dd-373bed4e8c52/mzaf_9916504162058969591.plus.aac.p.m4a",
-    "slug": "35"
+    "slug": "36"
   },
   {
     "trackId": 1662362905,
@@ -285,7 +293,7 @@
     "artistName": "O-Zone",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/96/0d/85/960d8540-8160-ccb8-95fa-1cb02cad46aa/6420565323606.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/84/fb/3a/84fb3a50-2b6e-9c9e-96c1-c3f7410f0b1b/mzaf_982804505229788807.plus.aac.p.m4a",
-    "slug": "36"
+    "slug": "37"
   },
   {
     "trackId": 1357124994,
@@ -293,7 +301,7 @@
     "artistName": "GENGHIS KHAN",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/88/fe/63/88fe63b4-2704-40da-702b-ddab75db3dbf/886446898902.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/26/0e/e6/260ee609-d3cd-f63c-56d2-31990764b7f4/mzaf_12824821887120722167.plus.aac.p.m4a",
-    "slug": "37"
+    "slug": "38"
   },
   {
     "trackId": 1577412634,
@@ -301,7 +309,7 @@
     "artistName": "Sonia y Selena",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e9/1b/d1/e91bd125-63c0-650f-2141-4150423b84e7/21UMGIM66399.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ea/09/3d/ea093d62-d99a-ce98-c851-a535e1893f76/mzaf_3763569570858356362.plus.aac.p.m4a",
-    "slug": "38"
+    "slug": "39"
   },
   {
     "trackId": 158816462,
@@ -309,7 +317,7 @@
     "artistName": "Billy Joel",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f0/7a/54/f07a54ab-3ebc-6813-e515-86200b8138fc/dj.uthntyfe.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/60/d5/ff/60d5ffad-4999-c9f0-bf25-e62fd1ebdcf7/mzaf_2851246103395113414.plus.aac.p.m4a",
-    "slug": "39"
+    "slug": "40"
   },
   {
     "trackId": 1275819878,
@@ -317,7 +325,7 @@
     "artistName": "Metallica",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b8/5a/82/b85a8259-60d9-bfaa-770a-2baac8380e87/858978005196.png/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/da/e7/9c/dae79c08-a960-2d21-8eab-42e9d70e29e6/mzaf_7135498142102205621.plus.aac.p.m4a",
-    "slug": "40"
+    "slug": "41"
   },
   {
     "trackId": 1440882897,
@@ -325,7 +333,7 @@
     "artistName": "The Police",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/42/b7/db/42b7dbe1-d13f-c600-5b78-daa57c5d0f08/06UMGIM50761.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6c/b4/79/6cb47947-0860-8788-95b1-a2b0a908f342/mzaf_4654925634744235278.plus.aac.p.m4a",
-    "slug": "41"
+    "slug": "42"
   },
   {
     "trackId": 726380514,
@@ -333,7 +341,15 @@
     "artistName": "Édith Piaf",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b6/5a/1b/b65a1bec-37b1-51d2-6ce8-16e1cac4d7d1/094636839554.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a6/62/1d/a6621d82-89d8-4486-809f-df789dd06d9c/mzaf_11079119627866807894.plus.aac.p.m4a",
-    "slug": "42"
+    "slug": "43"
+  },
+  {
+    "trackId": 1440892680,
+    "trackName": "The Man Who Sold the World (Live Acoustic)",
+    "artistName": "Nirvana",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/24/33/462433f9-ee74-2d60-4538-859826a7bed7/00720642472729.rgb.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e5/27/7a/e5277ad5-2777-e074-04c8-9ebc8d61297c/mzaf_1834049229068555483.plus.aac.p.m4a",
+    "slug": "44"
   },
   {
     "trackId": 1422693816,
@@ -341,7 +357,7 @@
     "artistName": "R.E.M.",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d4/9c/f6/d49cf63f-a412-5737-9392-1576c297b475/00888072396272.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/af/be/f5/afbef592-8f00-fe28-8ab4-5c070827b2f8/mzaf_4959761764791628207.plus.aac.p.m4a",
-    "slug": "43"
+    "slug": "45"
   },
   {
     "trackId": 948438478,
@@ -349,7 +365,7 @@
     "artistName": "Red Hot Chili Peppers",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/7f/25/c17f25d9-c5fa-5a70-5e76-122caf132bc1/093624931966.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7e/b7/11/7eb71162-f171-3b8e-c7ee-9af9c177d87c/mzaf_16991645625428564807.plus.aac.p.m4a",
-    "slug": "44"
+    "slug": "46"
   },
   {
     "trackId": 726416473,
@@ -357,7 +373,7 @@
     "artistName": "Blur",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ed/73/cc/ed73cc61-8244-4f45-90fc-23ad8a3ee7e4/5099997227359.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/ff/11/26/ff1126d1-d793-5107-39a9-5e57383b4e88/mzaf_14192975438031776859.plus.aac.p.m4a",
-    "slug": "45"
+    "slug": "47"
   },
   {
     "trackId": 1440840510,
@@ -365,7 +381,7 @@
     "artistName": "blink-182",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c1/3d/86/c13d8619-0794-ceee-6b1b-d0709119a9cf/16UMGIM35657.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/98/22/8d/98228d8c-b66b-ef27-c97f-f44c4abb632e/mzaf_1096879951067266311.plus.aac.p.m4a",
-    "slug": "46"
+    "slug": "48"
   },
   {
     "trackId": 992627891,
@@ -373,7 +389,7 @@
     "artistName": "Muse",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e2/8d/41/e28d412b-da8b-6f0b-227a-faa9a453e612/825646092666.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fe/1f/6e/fe1f6ee1-9e88-e278-c7d4-534fc2ba1287/mzaf_469366794927492795.plus.aac.p.m4a",
-    "slug": "47"
+    "slug": "49"
   },
   {
     "trackId": 1773340317,
@@ -381,7 +397,7 @@
     "artistName": "Rage Against the Machine",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3b/7b/17/3b7b1762-04bc-a9e9-4f5c-93946b13b727/886448670452.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/52/f5/e6/52f5e648-d504-d6d8-a3f4-a2f40db68326/mzaf_8855636367189570390.plus.aac.p.m4a",
-    "slug": "48"
+    "slug": "50"
   },
   {
     "trackId": 273714640,
@@ -389,7 +405,7 @@
     "artistName": "System Of A Down",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/82/51/52/825152b4-9423-b23b-c036-cc67ead732d4/888888046775.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f4/a1/c2/f4a1c207-6d73-e3bd-8fcb-bd6c5037021a/mzaf_16212608709217830172.plus.aac.p.m4a",
-    "slug": "49"
+    "slug": "51"
   },
   {
     "trackId": 1438813154,
@@ -397,7 +413,7 @@
     "artistName": "Scorpions",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/65/29/ca/6529cad4-827a-8aa5-ebbc-f9de2ea33af2/00602567825265.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fe/ee/d4/feeed4a7-ac1a-6f05-30e0-fa94f928d399/mzaf_17504970637263282210.plus.aac.p.m4a",
-    "slug": "50"
+    "slug": "52"
   },
   {
     "trackId": 553356946,
@@ -405,7 +421,7 @@
     "artistName": "Boney M.",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b7/86/45/b786452a-a723-eaed-8170-cdc261367eb7/886443575578.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ce/f4/88/cef48846-e265-b9b2-f71e-1c47c7c56e0a/mzaf_11320931180470497407.plus.aac.p.m4a",
-    "slug": "51"
+    "slug": "53"
   },
   {
     "trackId": 1765808258,
@@ -413,7 +429,7 @@
     "artistName": "Talking Heads",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/44/dd/5e44dd36-b892-2b99-062b-44e057a125c1/603497819690.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/55/8a/4e/558a4ee7-8a2d-abfb-a400-fcd0093b9eb0/mzaf_11325403898632896498.plus.aac.p.m4a",
-    "slug": "52"
+    "slug": "54"
   },
   {
     "trackId": 716231650,
@@ -421,7 +437,7 @@
     "artistName": "Blondie",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/72/73/8f/72738f62-d8a1-f1f9-e84d-244ff697d1db/13UABIM56926.rgb.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b1/13/b5/b113b569-8639-b071-9199-3c8f8fb0d3a9/mzaf_2541938402474802623.plus.aac.p.m4a",
-    "slug": "53"
+    "slug": "55"
   },
   {
     "trackId": 192480260,
@@ -429,7 +445,7 @@
     "artistName": "Simon & Garfunkel",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f9/8c/fa/f98cfa9e-282b-8a4f-33bd-ff3de9269963/074640926921.jpg/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/58/50/44/58504445-1bf2-0560-b55f-91b4b6adbf0b/mzaf_13851124265518095228.plus.aac.p.m4a",
-    "slug": "54"
+    "slug": "56"
   },
   {
     "trackId": 780454441,
@@ -437,7 +453,7 @@
     "artistName": "Navajita Plateá",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/2f/98/f5/2f98f585-1052-ac63-c262-bbec5b2b104c/dj.ozjgtwle.tif/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6b/9f/5e/6b9f5eaa-119d-3356-8a39-ec7a24b19b11/mzaf_15213447225889520531.plus.aac.p.m4a",
-    "slug": "55"
+    "slug": "57"
   },
   {
     "trackId": 1097861836,
@@ -445,6 +461,110 @@
     "artistName": "Radiohead",
     "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/60/ba/0760ba0f-148c-b18f-d0ff-169ee96f3af5/634904078164.png/600x600bb.jpg",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/95/d7/8b/95d78bf8-aa46-9d40-ce93-0652918bc68f/mzaf_12066288776609103708.plus.aac.p.m4a",
-    "slug": "56"
+    "slug": "58"
+  },
+  {
+    "trackId": 1440913824,
+    "trackName": "Crazy",
+    "artistName": "Aerosmith",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2d/08/bf/2d08bf29-d87e-8ce9-3a48-2985787f8a7c/00720642471623.rgb.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/61/0b/61/610b6195-6822-b82b-78c1-554693d33991/mzaf_6096393361047254290.plus.aac.p.m4a",
+    "slug": "59"
+  },
+  {
+    "trackId": 1766643042,
+    "trackName": "Toro",
+    "artistName": "El Columpio Asesino",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/df/b2/d3dfb285-adb7-1612-536a-fd4641df1bdd/3614976838481.png/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/15/c4/12/15c41239-705c-d371-a9c7-e365211b5bf3/mzaf_12863174429968166713.plus.aac.p.m4a",
+    "slug": "60"
+  },
+  {
+    "trackId": 273925071,
+    "trackName": "Hijos de Caín",
+    "artistName": "Barón Rojo",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/56/47/a5/mzi.uvnzyhng.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/49/5e/3f/495e3f9c-c61d-a4bb-ba8c-5c6861157edf/mzaf_16273892800326189043.plus.aac.p.m4a",
+    "slug": "61"
+  },
+  {
+    "trackId": 266614007,
+    "trackName": "A Little Piece of Heaven",
+    "artistName": "Avenged Sevenfold",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c4/21/00/c42100f9-f329-aad4-7535-9055429efc3f/mzi.tbskuyey.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ec/61/97/ec6197ef-a51e-0c3f-c4f1-96b35bff4ba8/mzaf_716496341213239706.plus.aac.p.m4a",
+    "slug": "62"
+  },
+  {
+    "trackId": 695509254,
+    "trackName": "¿Y Cómo Es Él?",
+    "artistName": "José Luis Perales",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/bd/2e/c6/bd2ec685-2fa9-b2ff-636b-c456b63510ff/0077779073559_1404x1404_300dpi.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/df/41/c9/df41c9ea-341b-8462-4d17-8a14d152d17f/mzaf_1185243843461744277.plus.aac.p.m4a",
+    "slug": "63"
+  },
+  {
+    "trackId": 6799205695,
+    "trackName": "No Puedo Vivir Sin Ti",
+    "artistName": "Los Ronaldos",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/29/2d/58/292d586f-110a-c6df-6483-d4a32ba3140f/1200214798970.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/31/18/64/311864c9-a34d-bd16-04c9-7796e471b6d2/mzaf_14886853969449844231.plus.aac.p.m4a",
+    "slug": "64"
+  },
+  {
+    "trackId": 1799262590,
+    "trackName": "La Tia Enriqueta (Tia Enriqueta Mix)",
+    "artistName": "Chimo Bayo",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8e/be/92/8ebe9250-238f-6a46-c062-62aa90714431/8445775251455.png/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/b5/02/77b502b7-58aa-c1b2-ae04-c1b134371028/mzaf_5319764880072332890.plus.aac.p.m4a",
+    "slug": "65"
+  },
+  {
+    "trackId": 1171270388,
+    "trackName": "Que la Detengan",
+    "artistName": "David Civera",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/3a/09/cf/3a09cf64-3ac4-b70d-890a-ba6cde6dc104/886446165141.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c5/d0/87/c5d087e5-bd95-713a-5570-c9aac2379903/mzaf_15980897042359466391.plus.aac.p.m4a",
+    "slug": "66"
+  },
+  {
+    "trackId": 1796484133,
+    "trackName": "The Emptiness Machine (Instrumental)",
+    "artistName": "LINKIN PARK",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/af/35/8b/af358b06-ed22-f8d2-bbf9-1cd38b6f2762/093624833802.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/81/48/47/81484725-99a9-867a-a094-25a390e82a31/mzaf_2642985205707173460.plus.aac.p.m4a",
+    "slug": "67"
+  },
+  {
+    "trackId": 477046842,
+    "trackName": "California Dreamin' (Live)",
+    "artistName": "The Mamas & The Papas",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music/8f/88/74/mzi.rvuonofp.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fd/84/68/fd84687f-d98f-f984-6f03-66ab55a882f9/mzaf_52532396973652954.plus.aac.p.m4a",
+    "slug": "68"
+  },
+  {
+    "trackId": 785232521,
+    "trackName": "Paranoid",
+    "artistName": "Black Sabbath",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/be/27/91/be279120-2285-16c6-c7ba-9d6643d4a948/075992732727.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/87/7e/c4/877ec400-6e44-8bc4-bb22-b88273a3330d/mzaf_15381783367282008011.plus.aac.p.m4a",
+    "slug": "69"
+  },
+  {
+    "trackId": 1520451706,
+    "trackName": "¿Porqué te vas?",
+    "artistName": "Jeanette",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e4/ac/96/e4ac96b4-82c5-3656-1564-44708cccdfae/190295202309.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/39/90/f1/3990f1a6-27a7-8628-c1d8-5fb2196b2f2a/mzaf_3412877828754928072.plus.aac.p.m4a",
+    "slug": "70"
+  },
+  {
+    "trackId": 903645968,
+    "trackName": "El Gato Que Está Triste y Azul",
+    "artistName": "Roberto Carlos",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/27/1a/f8271abf-dc76-510d-3d03-7230a2701ee7/886444757959.jpg/600x600bb.jpg",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c2/e1/22/c2e12240-464b-52e1-fa67-26143333db5b/mzaf_1467749862787854857.plus.aac.p.m4a",
+    "slug": "71"
   }
 ]
