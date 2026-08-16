@@ -40,7 +40,10 @@ const { title = 'Adivina la Canción' } = Astro.props;
         const id = el.dataset.songId;
         if (progress[id]) {
           const img = el.querySelector('.song-art');
-          if (img) img.classList.remove('unplayed');
+          if (img) {
+            img.classList.remove('unplayed');
+            if (img.dataset.original) img.src = img.dataset.original;
+          }
           const artWrap = el.querySelector('.song-art-wrap');
           if (artWrap && !artWrap.querySelector('.song-badge')) {
             const badge = document.createElement('div');
@@ -62,10 +65,8 @@ const { title = 'Adivina la Canción' } = Astro.props;
           if (progress[songData.trackId]) {
             const artwork = newDoc.getElementById('artwork');
             if (artwork) {
-              artwork.style.opacity = '1';
+              if (artwork.dataset.original) artwork.src = artwork.dataset.original;
             }
-            const lock = newDoc.getElementById('artwork-lock');
-            if (lock) lock.classList.add('hidden');
             const titleText = newDoc.getElementById('title-text');
             const artistText = newDoc.getElementById('artist-text');
             const titleReveal = newDoc.getElementById('title-reveal');
