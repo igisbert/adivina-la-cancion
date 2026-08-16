@@ -233,14 +233,25 @@ const { song, currentIndex, nextSlug } = Astro.props;
       }
     };
 
+    function normalize(str) {
+      return str
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[\s]*\(.*?\)[\s]*/g, ' ')
+        .replace(/[\s]*\[.*?\][\s]*/g, ' ')
+        .replace(/[¿?!,.:;'"¡]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
     function handleGuess(song) {
       if (solved || currentAttempt >= INTERVALS.length) return;
 
       guesses.push(song);
 
       const isCorrect = song.trackId === songData.trackId ||
-        (song.trackName.toLowerCase() === songData.trackName.toLowerCase() &&
-         song.artistName.toLowerCase() === songData.artistName.toLowerCase());
+        (normalize(song.trackName) === normalize(songData.trackName) &&
+         normalize(song.artistName) === normalize(songData.artistName));
       const dots = attemptsDisplay.querySelectorAll('.attempt-dot');
 
       if (isCorrect) {
