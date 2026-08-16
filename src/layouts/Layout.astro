@@ -26,58 +26,65 @@ const { title = 'Adivina la Canción' } = Astro.props;
 </html>
 
 <script is:inline>
-  if (!window.__vtSync) {
-    window.__vtSync = true;
+  function syncProgress(doc) {
+    let progress;
+    try {
+      progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
+    } catch { progress = {}; }
 
-    document.addEventListener('astro:before-swap', (event) => {
-      const newDoc = event.newDocument;
-      let progress;
-      try {
-        progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
-      } catch { progress = {}; }
-
-      newDoc.querySelectorAll('[data-song-id]').forEach((el) => {
-        const id = el.dataset.songId;
-        if (progress[id]) {
-          const img = el.querySelector('.song-art');
-          if (img) {
-            img.classList.remove('unplayed');
-            if (img.dataset.original) img.src = img.dataset.original;
-          }
-          const artWrap = el.querySelector('.song-art-wrap');
-          if (artWrap && !artWrap.querySelector('.song-badge')) {
-            const badge = document.createElement('div');
-            badge.className = 'song-badge';
-            if (progress[id].solved) {
-              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
-            } else {
-              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            }
-            artWrap.appendChild(badge);
-          }
+    doc.querySelectorAll('[data-song-id]').forEach((el) => {
+      const id = el.dataset.songId;
+      if (progress[id]) {
+        const img = el.querySelector('.song-art');
+        if (img) {
+          img.classList.remove('unplayed');
+          if (img.dataset.original) img.src = img.dataset.original;
         }
-      });
-
-      const gameMain = newDoc.querySelector('.game');
-      if (gameMain && gameMain.dataset.song) {
-        try {
-          const songData = JSON.parse(gameMain.dataset.song);
-          if (progress[songData.trackId]) {
-            const artwork = newDoc.getElementById('artwork');
-            if (artwork) {
-              if (artwork.dataset.original) artwork.src = artwork.dataset.original;
-            }
-            const titleText = newDoc.getElementById('title-text');
-            const artistText = newDoc.getElementById('artist-text');
-            const titleReveal = newDoc.getElementById('title-reveal');
-            if (titleText) titleText.textContent = songData.trackName;
-            if (artistText) artistText.textContent = songData.artistName;
-            if (titleReveal) titleReveal.classList.add('visible');
+        const artWrap = el.querySelector('.song-art-wrap');
+        if (artWrap && !artWrap.querySelector('.song-badge')) {
+          const badge = document.createElement('div');
+          badge.className = 'song-badge';
+          if (progress[id].solved) {
+            const attempts = progress[id].attempts;
+            badge.textContent = attempts;
+            badge.classList.add(attempts <= 2 ? 'badge-green' : 'badge-orange');
+          } else {
+            badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            badge.classList.add('badge-red');
           }
-        } catch {}
+          artWrap.appendChild(badge);
+        }
       }
     });
+
+    const gameMain = doc.querySelector('.game');
+    if (gameMain && gameMain.dataset.song) {
+      try {
+        const songData = JSON.parse(gameMain.dataset.song);
+        if (progress[songData.trackId]) {
+          const artwork = doc.getElementById('artwork');
+          if (artwork) {
+            if (artwork.dataset.original) artwork.src = artwork.dataset.original;
+          }
+          const titleText = doc.getElementById('title-text');
+          const artistText = doc.getElementById('artist-text');
+          const titleReveal = doc.getElementById('title-reveal');
+          if (titleText) titleText.textContent = songData.trackName;
+          if (artistText) artistText.textContent = songData.artistName;
+          if (titleReveal) titleReveal.classList.add('visible');
+        }
+      } catch {}
+    }
   }
+
+  if (!window.__vtSync) {
+    window.__vtSync = true;
+    document.addEventListener('astro:before-swap', (event) => {
+      syncProgress(event.newDocument);
+    });
+  }
+
+  syncProgress(document);
 </script>
 
 <style is:global>
