@@ -25,11 +25,17 @@ const displaySongs = limit ? songs.slice(0, limit) : songs;
 <style>
   .songs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     padding: 0 24px;
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .songs-grid {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
   }
 </style>
