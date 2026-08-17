@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/jost':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/cinzel-decorative':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@lucide/astro':
         specifier: ^1.31.0
         version: 1.31.0(astro@7.2.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3))
@@ -350,6 +353,9 @@ packages:
 
   '@fontsource-variable/jost@5.3.0':
     resolution: {integrity: sha512-9FS8iBMJnfyPqQOi9dfMjSwYBIWd0kBD3/jl8VvtbIMY2pK+CSp3oAaTLS1V60rDoM7AfyPvuT+IUfJfGeCTKg==}
+
+  '@fontsource/cinzel-decorative@5.3.0':
+    resolution: {integrity: sha512-9T6Fsv6l+5CUjvKWcTlMtkAYR/C8p2ll0bgT5krOU+DTLJRmaZYpXzcRoxPvENA6+uApa+Yyn0Ft/hdq083iVA==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1689,6 +1695,8 @@ snapshots:
     optional: true
 
   '@fontsource-variable/jost@5.3.0': {}
+
+  '@fontsource/cinzel-decorative@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

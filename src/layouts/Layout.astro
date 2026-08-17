@@ -1,12 +1,13 @@
 ---
-import '@fontsource-variable/jost';
-import { ClientRouter } from 'astro:transitions';
+import "@fontsource-variable/jost";
+import "@fontsource/cinzel-decorative";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
 }
 
-const { title = 'Adivina la Canción' } = Astro.props;
+const { title = "Adivina la canción" } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,49 +30,53 @@ const { title = 'Adivina la Canción' } = Astro.props;
   function syncProgress(doc) {
     let progress;
     try {
-      progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
-    } catch { progress = {}; }
+      progress = JSON.parse(localStorage.getItem("musicgame_progress") || "{}");
+    } catch {
+      progress = {};
+    }
 
-    doc.querySelectorAll('[data-song-id]').forEach((el) => {
+    doc.querySelectorAll("[data-song-id]").forEach((el) => {
       const id = el.dataset.songId;
       if (progress[id]) {
-        const img = el.querySelector('.song-art');
+        const img = el.querySelector(".song-art");
         if (img) {
-          img.classList.remove('unplayed');
+          img.classList.remove("unplayed");
           if (img.dataset.original) img.src = img.dataset.original;
         }
-        const artWrap = el.querySelector('.song-art-wrap');
-        if (artWrap && !artWrap.querySelector('.song-badge')) {
-          const badge = document.createElement('div');
-          badge.className = 'song-badge';
+        const artWrap = el.querySelector(".song-art-wrap");
+        if (artWrap && !artWrap.querySelector(".song-badge")) {
+          const badge = document.createElement("div");
+          badge.className = "song-badge";
           if (progress[id].solved) {
             const attempts = progress[id].attempts;
             badge.textContent = attempts;
-            badge.classList.add(attempts <= 2 ? 'badge-green' : 'badge-orange');
+            badge.classList.add(attempts <= 2 ? "badge-green" : "badge-orange");
           } else {
-            badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            badge.classList.add('badge-red');
+            badge.innerHTML =
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            badge.classList.add("badge-red");
           }
           artWrap.appendChild(badge);
         }
       }
     });
 
-    const gameMain = doc.querySelector('.game');
+    const gameMain = doc.querySelector(".game");
     if (gameMain && gameMain.dataset.song) {
       try {
         const songData = JSON.parse(gameMain.dataset.song);
         if (progress[songData.trackId]) {
-          const artwork = doc.getElementById('artwork');
+          const artwork = doc.getElementById("artwork");
           if (artwork) {
-            if (artwork.dataset.original) artwork.src = artwork.dataset.original;
+            if (artwork.dataset.original)
+              artwork.src = artwork.dataset.original;
           }
-          const titleText = doc.getElementById('title-text');
-          const artistText = doc.getElementById('artist-text');
-          const titleReveal = doc.getElementById('title-reveal');
+          const titleText = doc.getElementById("title-text");
+          const artistText = doc.getElementById("artist-text");
+          const titleReveal = doc.getElementById("title-reveal");
           if (titleText) titleText.textContent = songData.trackName;
           if (artistText) artistText.textContent = songData.artistName;
-          if (titleReveal) titleReveal.classList.add('visible');
+          if (titleReveal) titleReveal.classList.add("visible");
         }
       } catch {}
     }
@@ -79,7 +84,7 @@ const { title = 'Adivina la Canción' } = Astro.props;
 
   if (!window.__vtSync) {
     window.__vtSync = true;
-    document.addEventListener('astro:before-swap', (event) => {
+    document.addEventListener("astro:before-swap", (event) => {
       syncProgress(event.newDocument);
     });
   }
@@ -88,8 +93,6 @@ const { title = 'Adivina la Canción' } = Astro.props;
 </script>
 
 <style is:global>
-  @import '@fontsource-variable/jost';
-
   ::view-transition-old(*),
   ::view-transition-new(*) {
     border-radius: 16px;
@@ -102,7 +105,7 @@ const { title = 'Adivina la Canción' } = Astro.props;
     padding: 0;
     width: 100%;
     min-height: 100dvh;
-    font-family: 'Jost Variable', system-ui, sans-serif;
+    font-family: "Jost Variable", system-ui, sans-serif;
     background: #09090b;
     color: #fafafa;
     -webkit-font-smoothing: antialiased;

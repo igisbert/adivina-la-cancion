@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Preview — Adivina la Canción">
+  <main class="preview">
+    <h1>Preview de canciones</h1>
+    <p class="hint">Formato: <code>cancion,artista</code></p>
+
+    <form id="form" class="form">
+      <input id="input" type="text" placeholder="Bohemian Rhapsody,Queen" autocomplete="off" />
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div id="result" class="result"></div>
+  </main>
+
+  <style>
+    .preview {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #fafafa;
+      margin: 0 0 4px;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: #71717a;
+      margin: 0 0 24px;
+    }
+
+    code {
+      background: #18181b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+
+    .form {
+      display: flex;
+      gap: 8px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px 14px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #fafafa;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #3f3f46;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      color: #fafafa;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3f3f46;
+    }
+
+    .result {
+      margin-top: 24px;
+    }
+
+    .card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fafafa;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-artist {
+      font-size: 13px;
+      color: #71717a;
+      margin-top: 2px;
+    }
+
+    .card audio {
+      margin-top: 8px;
+      width: 100%;
+      height: 36px;
+    }
+
+    .card-id {
+      font-size: 11px;
+      color: #52525b;
+      margin-top: 4px;
+    }
+
+    .error {
+      color: #ef4444;
+      font-size: 14px;
+    }
+
+    .loading {
+      color: #71717a;
+      font-size: 14px;
+    }
+  </style>
+
+  <script is:inline>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const raw = document.getElementById('input').value.trim();
+      const result = document.getElementById('result');
+
+      if (!raw.includes(',')) {
+        result.innerHTML = '<p class="error">Usa el formato: cancion,artista</p>';
+        return;
+      }
+
+      const [title, artist] = raw.split(',').map(s => s.trim());
+      if (!title || !artist) {
+        result.innerHTML = '<p class="error">Falta título o artista</p>';
+        return;
+      }
+
+      result.innerHTML = '<p class="loading">Buscando...</p>';
+
+      try {
+        const term = encodeURIComponent(`${title} ${artist}`);
+        const res = await fetch(`https://itunes.apple.com/search?term=${term}&entity=song&limit=5`);
+        const data = await res.json();
+
+        if (!data.results || data.results.length === 0) {
+          result.innerHTML = '<p class="error">Sin resultados</p>';
+          return;
+        }
+
+        const artistLower = artist.toLowerCase();
+        const best = data.results.find(r => r.artistName.toLowerCase() === artistLower)
+          || data.results[0];
+
+        result.innerHTML = `
+          <div class="card">
+            <img src="${best.artworkUrl100.replace('100x100', '300x300')}" alt="" />
+            <div class="card-info">
+              <div class="card-title">${best.trackName}</div>
+              <div class="card-artist">${best.artistName}</div>
+              <div class="card-id">trackId: ${best.trackId}</div>
+              ${best.previewUrl ? `<audio controls src="${best.previewUrl}"></audio>` : '<p class="error">Sin preview</p>'}
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        result.innerHTML = `<p class="error">Error: ${err.message}</p>`;
+      }
+    });
+  </script>
+</Layout>

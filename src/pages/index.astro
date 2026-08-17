@@ -1,16 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SongsGrid from '../components/SongsGrid.astro';
-import songs from '../data/songs.json';
-import { Music } from '@lucide/astro';
+import Layout from "../layouts/Layout.astro";
+import SongsGrid from "../components/SongsGrid.astro";
+import songs from "../data/songs.json";
+import "@fontsource/cinzel-decorative";
 ---
 
 <Layout title="Adivina la Canción">
   <main class="main">
     <header class="header">
-      <div class="logo">
-        <Music size={18} strokeWidth={1.5} />
-      </div>
       <h1 class="title">Adivina la Canción</h1>
       <p class="subtitle">{songs.length} canciones por descubrir</p>
     </header>
@@ -18,40 +15,48 @@ import { Music } from '@lucide/astro';
     <SongsGrid />
 
     <footer class="footer">
-      <p>El progreso se guarda solo en este navegador.</p>
+      <p>El progreso se guarda solo en este dispositivo.</p>
     </footer>
   </main>
 
   <script is:inline>
-    (function() {
+    (function () {
       const progress = (() => {
         try {
-          return JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
-        } catch { return {}; }
+          return JSON.parse(localStorage.getItem("musicgame_progress") || "{}");
+        } catch {
+          return {};
+        }
       })();
-      const cards = document.querySelectorAll('.song-card');
-      
-      cards.forEach(card => {
+      const cards = document.querySelectorAll(".song-card");
+
+      cards.forEach((card) => {
         const songId = card.dataset.songId;
         const songProgress = progress[songId];
-        
+
         if (songProgress) {
-          const img = card.querySelector('.song-art');
+          const img = card.querySelector(".song-art");
           if (img) {
-            img.classList.remove('unplayed');
+            img.classList.remove("unplayed");
           }
-          
-          const artWrap = card.querySelector('.song-art-wrap');
-          if (artWrap && !artWrap.querySelector('.song-badge')) {
-            const badge = document.createElement('div');
-            badge.className = 'song-badge';
-            
+
+          const artWrap = card.querySelector(".song-art-wrap");
+          if (artWrap && !artWrap.querySelector(".song-badge")) {
+            const badge = document.createElement("div");
+            badge.className = "song-badge";
+
             if (songProgress.solved) {
-              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
+              const attempts = songProgress.attempts;
+              badge.textContent = attempts;
+              badge.classList.add(
+                attempts <= 2 ? "badge-green" : "badge-orange",
+              );
             } else {
-              badge.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+              badge.innerHTML =
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+              badge.classList.add("badge-red");
             }
-            
+
             artWrap.appendChild(badge);
           }
         }
@@ -70,25 +75,11 @@ import { Music } from '@lucide/astro';
     padding: 48px 24px 32px;
   }
 
-  .logo {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #18181b;
-    border: 1px solid #27272a;
-    border-radius: 10px;
-    color: #a1a1aa;
-    margin: 0 auto 12px;
-  }
-
   .title {
-    font-size: 20px;
-    font-weight: 500;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 6vw, 64px);
     color: #fafafa;
     margin: 0 0 4px;
-    letter-spacing: -0.02em;
   }
 
   .subtitle {
