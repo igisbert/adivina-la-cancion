@@ -1,0 +1,35 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = "reset-button" } = Astro.props;
+---
+
+<button id={id} class="reset-button" aria-label="Reiniciar">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M1 4v6h6"></path>
+    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+  </svg>
+</button>
+
+<style>
+  .reset-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #a1a1aa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background 0.15s ease-out, color 0.15s ease-out;
+  }
+
+  .reset-button:active {
+    transform: scale(0.95);
+  }
+</style>

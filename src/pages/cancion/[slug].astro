@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PlayButton from '../../components/PlayButton.astro';
+import ResetButton from '../../components/ResetButton.astro';
 import SkipButton from '../../components/SkipButton.astro';
 import AttemptsDisplay from '../../components/AttemptsDisplay.astro';
 import SearchInput from '../../components/SearchInput.astro';
@@ -67,6 +68,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
       <div class="button-row">
         <PlayButton id="play-button" />
+        <ResetButton id="reset-button" />
         <SkipButton id="skip-button" />
       </div>
 
@@ -88,6 +90,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
       if (playTimeout) clearTimeout(playTimeout);
     });
     const playButton = document.getElementById('play-button');
+    const resetButton = document.getElementById('reset-button');
     const skipButton = document.getElementById('skip-button');
     const attemptsDisplay = document.getElementById('attempts-display');
     const guessInput = document.getElementById('guess-input');
@@ -127,7 +130,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
     const updatePlayButton = (playing) => {
       playButton.innerHTML = playing
-        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-6.219-8.56"></path><polyline points="21 3 21 9 15 9"></polyline></svg>'
+        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>'
         : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>';
     };
 
@@ -174,6 +177,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
           playTimeout = setTimeout(() => {
             audio.pause();
+            audio.currentTime = 0;
             updatePlayButton(false);
             waveform.classList.remove('playing');
           }, duration * 1000);
@@ -338,11 +342,36 @@ const { song, currentIndex, nextSlug } = Astro.props;
     };
 
     playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        if (audio.currentTime === 0 || audio.ended) {
+          playSegment();
+        } else {
+          audio.play().then(() => {
+            updatePlayButton(true);
+            waveform.classList.add('playing');
+            if (!gameOver) {
+              playTimeout = setTimeout(() => {
+                audio.pause();
+                updatePlayButton(false);
+                waveform.classList.remove('playing');
+              }, (INTERVALS[currentAttempt] - audio.currentTime) * 1000);
+            }
+          }).catch(err => console.error('Playback failed:', err));
+        }
+      } else {
+        if (playTimeout) clearTimeout(playTimeout);
+        audio.pause();
+        updatePlayButton(false);
+        waveform.classList.remove('playing');
+      }
+    });
+
+    resetButton.addEventListener('click', () => {
       if (playTimeout) clearTimeout(playTimeout);
       audio.pause();
-      waveform.classList.remove('playing');
+      audio.currentTime = 0;
       updatePlayButton(false);
-      playSegment();
+      waveform.classList.remove('playing');
     });
 
     skipButton.addEventListener('click', handleSkip);
