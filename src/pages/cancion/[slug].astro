@@ -102,6 +102,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
     const INTERVALS = [0.5, 1.25, 2.5, 3.75, 5, 9];
     let currentAttempt = 0;
     let solved = false;
+    let gameOver = false;
     let guesses = [];
     let playTimeout = null;
     let currentRequestId = 0;
@@ -141,6 +142,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
       solved = existingProgress.solved;
       guesses = existingProgress.guesses || [];
       currentAttempt = guesses.length;
+      gameOver = true;
 
       if (artwork.dataset.original) artwork.src = artwork.dataset.original;
       titleText.textContent = songData.trackName;
@@ -167,8 +169,6 @@ const { song, currentIndex, nextSlug } = Astro.props;
       audio.currentTime = 0;
 
       audio.play().then(() => {
-        const gameOver = solved || currentAttempt >= INTERVALS.length;
-
         if (!gameOver) {
           const duration = INTERVALS[currentAttempt];
 
@@ -238,7 +238,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
     }
 
     function handleGuess(song) {
-      if (solved || currentAttempt >= INTERVALS.length) return;
+      if (gameOver) return;
 
       guesses.push(song);
 
@@ -249,6 +249,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
 
       if (isCorrect) {
         solved = true;
+        gameOver = true;
         dots[currentAttempt]?.classList.add('correct');
         revealSong();
         window.fireConfetti({ particleCount: 150, spread: 80, origin: { y: 0.2 } });
@@ -257,6 +258,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
         dots[currentAttempt]?.classList.add('wrong');
         currentAttempt++;
         if (currentAttempt >= INTERVALS.length) {
+          gameOver = true;
           revealSong();
           gameNav.style.display = 'flex';
         }
@@ -266,7 +268,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
     }
 
     function handleSkip() {
-      if (solved || currentAttempt >= INTERVALS.length) return;
+      if (gameOver) return;
 
       attemptsDisplay.querySelectorAll('.attempt-dot')[currentAttempt]?.classList.add('wrong');
       guesses.push({ trackId: 0, trackName: 'Skip', artistName: '' });
@@ -278,6 +280,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
       updatePlayButton(false);
 
       if (currentAttempt >= INTERVALS.length) {
+        gameOver = true;
         revealSong();
         gameNav.style.display = 'flex';
       }
