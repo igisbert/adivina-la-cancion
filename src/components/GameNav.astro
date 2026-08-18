@@ -6,7 +6,7 @@ interface Props {
 const { nextSlug } = Astro.props;
 ---
 
-<nav id="game-nav" class="game-nav-bottom" style="display: none;">
+<nav id="game-nav" class="game-nav-bottom">
   <a href="/" class="nav-link nav-menu">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
@@ -31,6 +31,14 @@ const { nextSlug } = Astro.props;
     gap: 12px;
     padding: 16px 0;
     width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .game-nav-bottom.visible {
+    opacity: 1;
+    visibility: visible;
   }
 
   .nav-link {

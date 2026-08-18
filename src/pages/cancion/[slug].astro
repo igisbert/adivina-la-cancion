@@ -259,14 +259,17 @@ const { song, currentIndex, nextSlug } = Astro.props;
         dots[currentAttempt]?.classList.add('correct');
         revealSong();
         window.fireConfetti({ particleCount: 150, spread: 80, origin: { y: 0.2 } });
-        gameNav.style.display = 'flex';
+        gameNav.classList.add('visible');
       } else {
         dots[currentAttempt]?.classList.add('wrong');
         currentAttempt++;
         if (currentAttempt >= INTERVALS.length) {
           gameOver = true;
           revealSong();
-          gameNav.style.display = 'flex';
+          requestAnimationFrame(() => {
+            artwork.classList.add('shake');
+          });
+          gameNav.classList.add('visible');
         }
       }
 
@@ -288,7 +291,10 @@ const { song, currentIndex, nextSlug } = Astro.props;
       if (currentAttempt >= INTERVALS.length) {
         gameOver = true;
         revealSong();
-        gameNav.style.display = 'flex';
+        requestAnimationFrame(() => {
+          artwork.classList.add('shake');
+        });
+        gameNav.classList.add('visible');
       }
 
       saveProgress(false);
@@ -460,17 +466,27 @@ const { song, currentIndex, nextSlug } = Astro.props;
     user-select: none;
   }
 
+  .artwork.shake {
+    animation: shake-horizontal 0.8s cubic-bezier(.455,.03,.515,.955) both;
+  }
+
+  @keyframes shake-horizontal {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70% { transform: translateX(-10px); }
+    20%, 40%, 60% { transform: translateX(10px); }
+    80% { transform: translateX(8px); }
+    90% { transform: translateX(-8px); }
+  }
+
   .title-reveal {
     text-align: center;
     opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: opacity 0.3s ease-out;
     pointer-events: none;
   }
 
   .title-reveal.visible {
     opacity: 1;
-    transform: translateY(0);
   }
 
   .title-reveal #title-text {
