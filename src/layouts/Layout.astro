@@ -73,9 +73,11 @@ const { title = "Adivina la canción" } = Astro.props;
           const titleText = doc.getElementById("title-text");
           const artistText = doc.getElementById("artist-text");
           const titleReveal = doc.getElementById("title-reveal");
+          const gameNav = doc.getElementById("game-nav");
           if (titleText) titleText.textContent = songData.trackName;
           if (artistText) artistText.textContent = songData.artistName;
           if (titleReveal) titleReveal.classList.add("visible");
+          if (gameNav) gameNav.classList.add("visible");
         }
       } catch {}
     }
