@@ -10,9 +10,9 @@ interface Props {
 const { trackId, slug, artworkUrl, trackName, artistName } = Astro.props;
 ---
 
-<a href={`/cancion/${slug}`} class="song-card" data-song-id={trackId}>
+<a href={`/cancion/${slug}`} class="song-card" data-song-id={trackId} aria-label={`Canción ${slug}`}>
   <div class="song-art-wrap">
-    <img src={`/art/pixelated/${slug}.webp`} alt="" class="song-art unplayed" data-original={artworkUrl} loading="lazy" draggable="false" transition:name={`song-art-${slug}`} />
+    <img src={`/art/pixelated/${slug}.webp`} alt={`Canción ${slug}`} class="song-art unplayed" data-original={artworkUrl} loading="lazy" draggable="false" transition:name={`song-art-${slug}`} />
     <div class="song-overlay">
       <span class="song-overlay-title">{trackName}</span>
       <span class="song-overlay-artist">{artistName}</span>

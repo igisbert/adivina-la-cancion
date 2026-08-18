@@ -29,7 +29,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
     import confetti from 'canvas-confetti';
     window.fireConfetti = confetti;
   </script>
-  <main class="game" data-song={JSON.stringify(song)}>
+  <main class="game" data-song={encodeURIComponent(JSON.stringify(song))}>
     <nav class="game-nav">
       <a href="/" class="back-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -44,7 +44,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
         <div class="artwork-frame" transition:name={`song-art-${song.slug}`}>
           <img
             src={`/art/pixelated/${song.slug}.webp`}
-            alt=""
+            alt={`Canción ${song.slug}`}
             id="artwork"
             class="artwork"
             data-original={song.artworkUrl100}
@@ -84,7 +84,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
     document.addEventListener('astro:page-load', () => {
       const gameEl = document.querySelector('.game');
       if (!gameEl) return;
-      const songData = JSON.parse(gameEl.dataset.song);
+      const songData = JSON.parse(decodeURIComponent(gameEl.dataset.song));
     const audio = new Audio();
 
     document.addEventListener('astro:before-preparation', () => {

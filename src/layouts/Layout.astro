@@ -63,7 +63,7 @@ const { title = "Adivina la canción" } = Astro.props;
     const gameMain = doc.querySelector(".game");
     if (gameMain && gameMain.dataset.song) {
       try {
-        const songData = JSON.parse(gameMain.dataset.song);
+        const songData = JSON.parse(decodeURIComponent(gameMain.dataset.song));
         if (progress[songData.trackId]) {
           const artwork = doc.getElementById("artwork");
           if (artwork) {
