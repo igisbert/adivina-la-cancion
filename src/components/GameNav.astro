@@ -7,7 +7,7 @@ const { nextSlug } = Astro.props;
 ---
 
 <nav id="game-nav" class="game-nav-bottom" style="display: none;">
-  <a href="/" class="nav-link">
+  <a href="/" class="nav-link nav-menu">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
       <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -15,7 +15,7 @@ const { nextSlug } = Astro.props;
     Menú
   </a>
   {nextSlug && (
-    <a href={`/cancion/${nextSlug}`} class="nav-link">
+    <a href={`/cancion/${nextSlug}`} class="nav-link nav-next">
       Siguiente
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <polygon points="5 4 15 12 5 20 5 4"></polygon>
@@ -29,14 +29,15 @@ const { nextSlug } = Astro.props;
   .game-nav-bottom {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
+    gap: 12px;
     padding: 16px 0;
+    width: 100%;
   }
 
   .nav-link {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     font-size: 14px;
     color: #71717a;
@@ -51,5 +52,13 @@ const { nextSlug } = Astro.props;
   .nav-link:hover {
     color: #fafafa;
     border-color: #3f3f46;
+  }
+
+  .nav-menu {
+    flex: 1;
+  }
+
+  .nav-next {
+    flex: 3;
   }
 </style>
