@@ -15,18 +15,22 @@ const { id = "reset-button" } = Astro.props;
 
 <style>
   .reset-button {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: #27272a;
-    border: 1px solid #3f3f46;
-    color: #a1a1aa;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #71717a;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     cursor: pointer;
-    transition: background 0.15s ease-out, color 0.15s ease-out;
+    transition: color 0.15s ease-out, background 0.15s ease-out;
+  }
+
+  .reset-button:hover {
+    color: #a1a1aa;
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .reset-button:active {

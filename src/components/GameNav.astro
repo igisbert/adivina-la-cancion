@@ -18,8 +18,7 @@ const { nextSlug } = Astro.props;
     <a href={`/cancion/${nextSlug}`} class="nav-link nav-next">
       Siguiente
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <polygon points="5 4 15 12 5 20 5 4"></polygon>
-        <line x1="19" y1="5" x2="19" y2="19"></line>
+        <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </a>
   )}
@@ -42,16 +41,15 @@ const { nextSlug } = Astro.props;
     font-size: 14px;
     color: #71717a;
     text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    background: #18181b;
-    border: 1px solid #27272a;
-    transition: color 0.15s ease-out, border-color 0.15s ease-out;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    transition: color 0.15s ease-out, background 0.15s ease-out;
   }
 
   .nav-link:hover {
     color: #fafafa;
-    border-color: #3f3f46;
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .nav-menu {
@@ -60,5 +58,12 @@ const { nextSlug } = Astro.props;
 
   .nav-next {
     flex: 3;
+    background: #fafafa;
+    color: #09090b;
+  }
+
+  .nav-next:hover {
+    background: #e4e4e7;
+    color: #09090b;
   }
 </style>

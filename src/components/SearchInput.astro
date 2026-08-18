@@ -27,22 +27,27 @@ const { placeholder = "Escribe tu respuesta...", id = "guess-input" } = Astro.pr
 
   .search-input {
     width: 100%;
-    height: 52px;
-    padding: 0 18px;
+    height: 48px;
+    padding: 0 16px;
     font-size: 15px;
-    background: #18181b;
-    border: 1px solid #27272a;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid transparent;
     border-radius: 12px;
     color: #fafafa;
-    transition: border-color 0.2s ease-out;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
   }
 
   .search-input::placeholder {
     color: #52525b;
   }
 
+  .search-input:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
   .search-input:focus {
-    border-color: #52525b;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
     outline: none;
   }
 </style>
@@ -54,14 +59,14 @@ const { placeholder = "Escribe tu respuesta...", id = "guess-input" } = Astro.pr
     left: 0;
     right: 0;
     background: #18181b;
-    border: 1px solid #27272a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     max-height: 320px;
     overflow-y: auto;
     z-index: 50;
     display: none;
     padding: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   #search-dropdown.active {
@@ -73,20 +78,18 @@ const { placeholder = "Escribe tu respuesta...", id = "guess-input" } = Astro.pr
   .search-item {
     display: flex;
     align-items: center;
-    padding: 12px 14px;
+    padding: 10px 12px;
     cursor: pointer;
     border-radius: 8px;
     transition: background 0.1s ease-out;
   }
 
   .search-item:hover {
-    background: #27272a;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .search-item:hover .search-item-title {
-    text-decoration: underline;
-    text-decoration-color: #52525b;
-    text-underline-offset: 3px;
+    color: #ffffff;
   }
 
   .search-item-info {
@@ -100,13 +103,13 @@ const { placeholder = "Escribe tu respuesta...", id = "guess-input" } = Astro.pr
   }
 
   .search-item-title {
-    font-weight: 600;
+    font-weight: 500;
     color: #fafafa;
   }
 
   .search-item-sep {
-    color: #52525b;
-    margin: 0 4px;
+    color: #3f3f46;
+    margin: 0 6px;
   }
 
   .search-item-artist {
