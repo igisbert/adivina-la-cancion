@@ -205,7 +205,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
       updatePlayButton(false);
     }
 
-    const saveProgress = (solvedStatus) => {
+    const saveProgress = (solvedStatus, isGameOver = false) => {
       try {
         const progress = JSON.parse(localStorage.getItem('musicgame_progress') || '{}');
         progress[songData.trackId] = {
@@ -216,17 +216,20 @@ const { song, currentIndex, nextSlug } = Astro.props;
         };
         localStorage.setItem('musicgame_progress', JSON.stringify(progress));
 
-        const stats = JSON.parse(localStorage.getItem('musicgame_stats') || '{"played":0,"wins":0,"streak":0,"maxStreak":0,"distribution":{}}');
-        stats.played += 1;
-        if (solvedStatus) {
-          stats.wins += 1;
-          stats.streak += 1;
-          stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
-          stats.distribution[guesses.length] = (stats.distribution[guesses.length] || 0) + 1;
-        } else {
-          stats.streak = 0;
+        if (isGameOver) {
+          const stats = JSON.parse(localStorage.getItem('musicgame_stats') || '{"played":0,"wins":0,"streak":0,"maxStreak":0,"distribution":{}}');
+          stats.played += 1;
+          if (solvedStatus) {
+            stats.wins += 1;
+            stats.streak += 1;
+            stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
+            stats.distribution[guesses.length] = (stats.distribution[guesses.length] || 0) + 1;
+          } else {
+            stats.streak = 0;
+            stats.distribution['X'] = (stats.distribution['X'] || 0) + 1;
+          }
+          localStorage.setItem('musicgame_stats', JSON.stringify(stats));
         }
-        localStorage.setItem('musicgame_stats', JSON.stringify(stats));
       } catch (e) {
         console.error('Storage error:', e);
       }
@@ -273,7 +276,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
         }
       }
 
-      saveProgress(isCorrect);
+      saveProgress(isCorrect, gameOver);
     }
 
     function handleSkip() {
@@ -297,7 +300,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
         gameNav.classList.add('visible');
       }
 
-      saveProgress(false);
+      saveProgress(false, gameOver);
     }
 
     const escapeHtml = (text) => {
