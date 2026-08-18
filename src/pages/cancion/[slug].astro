@@ -427,6 +427,9 @@ const { song, currentIndex, nextSlug } = Astro.props;
     justify-content: center;
     padding: 0 24px 48px;
     gap: 32px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .artwork-wrap {
@@ -443,21 +446,14 @@ const { song, currentIndex, nextSlug } = Astro.props;
   }
 
   .artwork {
-    width: 280px;
-    height: 280px;
+    width: clamp(260px, 70vw, 320px);
+    height: clamp(260px, 70vw, 320px);
     border-radius: 16px;
     object-fit: cover;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
     transition: opacity 0.6s ease-out;
     -webkit-user-drag: none;
     user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .artwork {
-      width: 320px;
-      height: 320px;
-    }
   }
 
   .title-reveal {
