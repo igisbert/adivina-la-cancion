@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/jost";
 import { ClientRouter } from "astro:transitions";
+import StatsModal from "../components/StatsModal.astro";
 
 interface Props {
   title?: string;
@@ -22,6 +23,7 @@ const { title = "Adivina la canción" } = Astro.props;
   </head>
   <body>
     <slot />
+    <StatsModal />
   </body>
 </html>
 
@@ -110,6 +112,10 @@ const { title = "Adivina la canción" } = Astro.props;
     background: #09090b;
     color: #fafafa;
     -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scrollbar-gutter: stable;
   }
 
   *,

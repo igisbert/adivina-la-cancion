@@ -10,6 +10,14 @@ import "@fontsource/cinzel-decorative";
     <header class="header">
       <h1 class="title">Adivina la Canción</h1>
       <p class="subtitle">Desenmascara las {songs.length} canciones con el menor número de intentos</p>
+      <button id="stats-btn" class="stats-btn" aria-label="Ver estadísticas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 20V10"></path>
+          <path d="M12 20V4"></path>
+          <path d="M6 20v-6"></path>
+        </svg>
+        <span>Consulta tus estadísticas</span>
+      </button>
     </header>
 
     <SongsGrid />
@@ -43,8 +51,26 @@ import "@fontsource/cinzel-decorative";
   .subtitle {
     font-size: 16px;
     color: #71717a;
-    margin: 0;
+    margin: 0 0 20px;
     text-wrap: balance;
+  }
+
+  .stats-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    color: #09090b;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease-out;
+  }
+
+  .stats-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
   }
 
   .footer {
@@ -60,3 +86,14 @@ import "@fontsource/cinzel-decorative";
     margin: 0;
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    const statsBtn = document.getElementById('stats-btn');
+    if (statsBtn) {
+      statsBtn.addEventListener('click', () => {
+        if (window.openStatsModal) window.openStatsModal();
+      });
+    }
+  });
+</script>

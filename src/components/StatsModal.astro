@@ -1,0 +1,313 @@
+---
+---
+
+<dialog id="stats-modal" class="stats-dialog">
+  <div class="stats-modal">
+    <header class="stats-header">
+      <h2 class="stats-title">Estadísticas</h2>
+      <button id="stats-close" class="stats-close" aria-label="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div id="stats-summary" class="stats-summary">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-played">0</span>
+        <span class="stat-label">Jugadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-winrate">0%</span>
+        <span class="stat-label">Acierto</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-streak">0</span>
+        <span class="stat-label">Racha</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-maxstreak">0</span>
+        <span class="stat-label">Racha máx</span>
+      </div>
+    </div>
+
+    <div id="stats-chart-container"></div>
+  </div>
+</dialog>
+
+<style>
+  .stats-dialog {
+    all: unset;
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+  }
+
+  .stats-dialog[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stats-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  .stats-modal {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 16px;
+    padding: 24px;
+    width: calc(100% - 48px);
+    max-width: 480px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    animation: slide-in-blurred-bottom 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .stats-dialog.closing .stats-modal {
+    animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.05, 0.855, 0.06) both;
+  }
+
+  .stats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .stats-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fafafa;
+    margin: 0;
+  }
+
+  .stats-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #71717a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.15s ease-out, background 0.15s ease-out;
+  }
+
+  .stats-close:hover {
+    color: #fafafa;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .stats-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fafafa;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 11px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 410px) {
+    .stats-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @keyframes slide-in-blurred-bottom {
+    0% {
+      transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+      transform-origin: 50% 100%;
+      filter: blur(40px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) scaleY(1) scaleX(1);
+      transform-origin: 50% 50%;
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out-blurred-top {
+    0% {
+      transform: translateY(0) scaleY(1) scaleX(1);
+      transform-origin: 50% 0;
+      filter: blur(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-1000px) scaleY(2) scaleX(0.2);
+      transform-origin: 50% 0;
+      filter: blur(40px);
+      opacity: 0;
+    }
+  }
+</style>
+
+<style is:global>
+  .chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chart-label {
+    width: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #71717a;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .chart-bar-wrap {
+    flex: 1;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .chart-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease-out;
+    min-width: 4px;
+  }
+
+  .chart-count {
+    width: 28px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fafafa;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    .chart-bar-wrap {
+      height: 34px;
+    }
+
+    .chart-label,
+    .chart-count {
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script is:inline>
+  function initStatsModal() {
+    const dialog = document.getElementById('stats-modal');
+    const closeBtn = document.getElementById('stats-close');
+    const chartContainer = document.getElementById('stats-chart-container');
+
+    if (!dialog) return;
+
+    function loadStats() {
+      let stats;
+      try {
+        stats = JSON.parse(localStorage.getItem('musicgame_stats') || '{"played":0,"wins":0,"streak":0,"maxStreak":0,"distribution":{}}');
+      } catch {
+        stats = { played: 0, wins: 0, streak: 0, maxStreak: 0, distribution: {} };
+      }
+
+      const winrate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
+
+      document.getElementById('stat-played').textContent = stats.played;
+      document.getElementById('stat-winrate').textContent = winrate + '%';
+      document.getElementById('stat-streak').textContent = stats.streak;
+      document.getElementById('stat-maxstreak').textContent = stats.maxStreak;
+
+      // Build chart
+      const keys = ['1', '2', '3', '4', '5', '6', 'X'];
+      const max = Math.max(...keys.map(k => stats.distribution[k] || 0), 1);
+
+      chartContainer.innerHTML = `<div class="chart">
+        ${keys.map(key => {
+          const count = stats.distribution[key] || 0;
+          const percent = (count / max) * 100;
+          const color = key === 'X' ? '#ef4444'
+            : parseInt(key) <= 2 ? '#22c55e'
+            : parseInt(key) <= 4 ? '#eab308'
+            : '#f97316';
+          return `<div class="chart-row">
+            <span class="chart-label">${key}</span>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="width: ${percent}%; background: ${color};"></div>
+            </div>
+            <span class="chart-count">${count}</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }
+
+    function openModal() {
+      loadStats();
+      dialog.classList.remove('closing');
+      dialog.showModal();
+    }
+
+    function closeModal() {
+      const modal = dialog.querySelector('.stats-modal');
+      let closed = false;
+
+      const close = () => {
+        if (closed) return;
+        closed = true;
+        dialog.classList.remove('closing');
+        dialog.close();
+      };
+
+      dialog.classList.add('closing');
+      modal.addEventListener('animationend', close, { once: true });
+      setTimeout(close, 500);
+    }
+
+    // Close handlers
+    closeBtn.addEventListener('click', closeModal);
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) closeModal();
+    });
+    dialog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      closeModal();
+    });
+
+    // Expose open function
+    window.openStatsModal = openModal;
+  }
+
+  document.addEventListener('astro:page-load', initStatsModal);
+  initStatsModal();
+</script>
