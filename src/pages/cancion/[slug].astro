@@ -111,6 +111,11 @@ const { song, currentIndex, nextSlug } = Astro.props;
     document.addEventListener('astro:before-preparation', () => {
       audio.pause();
       if (playTimeout) clearTimeout(playTimeout);
+
+      if (!gameOver && guesses.length > 0) {
+        gameOver = true;
+        saveProgress(false, true);
+      }
     });
 
     audio.src = songData.previewUrl;
