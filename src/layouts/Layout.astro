@@ -12,7 +12,7 @@ interface Props {
 const {
   title = "Adivina la Canción",
   description = "Juego de adivinar canciones. Escucha fragmentos progresivamente más largos y trata de identificar la canción en el menor número de intentos.",
-  image = "/og-image.png"
+  image = "/og-image.png",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -25,7 +25,6 @@ const ogImageURL = new URL(image, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
