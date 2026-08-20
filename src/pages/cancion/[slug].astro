@@ -86,11 +86,6 @@ const { song, currentIndex, nextSlug } = Astro.props;
       if (!gameEl) return;
       const songData = JSON.parse(decodeURIComponent(gameEl.dataset.song));
     const audio = new Audio();
-
-    document.addEventListener('astro:before-preparation', () => {
-      audio.pause();
-      if (playTimeout) clearTimeout(playTimeout);
-    });
     const playButton = document.getElementById('play-button');
     const resetButton = document.getElementById('reset-button');
     const skipButton = document.getElementById('skip-button');
@@ -113,6 +108,11 @@ const { song, currentIndex, nextSlug } = Astro.props;
     let currentRequestId = 0;
     let debounceTimer = null;
 
+    document.addEventListener('astro:before-preparation', () => {
+      audio.pause();
+      if (playTimeout) clearTimeout(playTimeout);
+    });
+
     audio.src = songData.previewUrl;
     audio.preload = 'auto';
 
@@ -126,6 +126,8 @@ const { song, currentIndex, nextSlug } = Astro.props;
     });
 
     audio.addEventListener('ended', () => {
+      if (playTimeout) clearTimeout(playTimeout);
+      audio.currentTime = 0;
       updatePlayButton(false);
       waveform.classList.remove('playing');
     });
@@ -363,6 +365,7 @@ const { song, currentIndex, nextSlug } = Astro.props;
             if (!gameOver) {
               playTimeout = setTimeout(() => {
                 audio.pause();
+                audio.currentTime = 0;
                 updatePlayButton(false);
                 waveform.classList.remove('playing');
               }, (INTERVALS[currentAttempt] - audio.currentTime) * 1000);
