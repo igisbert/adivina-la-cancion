@@ -278,19 +278,20 @@
       document.getElementById('stat-maxstreak').textContent = stats.maxStreak;
 
       // Build chart
-      const keys = ['1', '2', '3', '4', '5', '6', '×'];
+      const keys = ['1', '2', '3', '4', '5', '6', 'X'];
+      const labels = { X: '×' };
       const max = Math.max(...keys.map(k => stats.distribution[k] || 0), 1);
 
       chartContainer.innerHTML = `<div class="chart">
         ${keys.map(key => {
           const count = stats.distribution[key] || 0;
           const percent = (count / max) * 100;
-          const color = key === '×' ? '#ef4444'
+          const color = key === 'X' ? '#ef4444'
             : parseInt(key) <= 2 ? '#22c55e'
             : parseInt(key) <= 4 ? '#eab308'
             : '#f97316';
           return `<div class="chart-row">
-            <span class="chart-label">${key}</span>
+            <span class="chart-label">${labels[key] || key}</span>
             <div class="chart-bar-wrap">
               <div class="chart-bar" style="width: ${percent}%; background: ${color};"></div>
             </div>
